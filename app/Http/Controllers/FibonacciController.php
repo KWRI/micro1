@@ -21,6 +21,7 @@ class FibonacciController extends Controller
     }
 
     // Get specific position in Fibonacci sequence
+    // TODO: Currently using zero based index
     public function position(int $position): int
     {
         // After position 92 the result turns into float instead of integer
