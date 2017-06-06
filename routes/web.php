@@ -14,3 +14,7 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+// Fibonacci
+$app->get('fibonacci', ['uses' => 'FibonacciController@full']);
+$app->get('fibonacci/{position}', ['uses' => 'FibonacciController@position']);
