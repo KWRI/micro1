@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
+use DB;
+
 class FibonacciController extends Controller
 {
     // Calculate Fibonacci sequence until $end then return
@@ -28,6 +31,15 @@ class FibonacciController extends Controller
         if ($position > 92) {
             $position = 92;
         }
-        return $this->_calculateFibonacci($position)[$position];
+
+        $return = Cache::store('database')->remember($position, '60', function () use ($position) {
+            return $this->_calculateFibonacci($position)[$position];
+        });
+        return $return;
+    }
+
+    public function showCache()
+    {
+        return DB::table('cache')->pluck('key');
     }
 }

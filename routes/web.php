@@ -18,3 +18,4 @@ $app->get('/', function () use ($app) {
 // Fibonacci
 $app->get('fibonacci', ['uses' => 'FibonacciController@full']);
 $app->get('fibonacci/{position}', ['uses' => 'FibonacciController@position']);
+$app->get('cache', ['uses' => 'FibonacciController@showCache']);
